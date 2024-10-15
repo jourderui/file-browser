@@ -1,5 +1,5 @@
-import MessageResponse from './MessageResponse';
+import { DirResponse } from "./DirResponse";
 
-export default interface ErrorResponse extends MessageResponse {
+export default interface ErrorResponse extends DirResponse {
   stack?: string;
 }
