@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import ErrorPage from "../components/Error/ErrorPage";
-import { App } from "../components/App/App";
+import { App } from "../pages/App/App";
 
-const ErrorBoundary = () => {
+const ErrorBoundary = (): ReactElement => {
   const error = useRouteError();
   console.error(error);
   return (

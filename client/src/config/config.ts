@@ -1,3 +1,6 @@
 /* eslint-disable max-len */
-const config = {};
+const config = {
+  HOST: "http://localhost",
+  PORT: 3101,
+};
 export default config;

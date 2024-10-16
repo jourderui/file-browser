@@ -1,0 +1,9 @@
+.browser-container {
+  margin-left: 0;
+}
+.browser-box {
+  background-color: #efefef;
+  height: 50px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}

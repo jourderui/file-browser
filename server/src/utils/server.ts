@@ -3,10 +3,8 @@ import { Express } from "express-serve-static-core";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
-
 import * as middlewares from "../middlewares/middlewares";
-import api from "../api";
-import getDirectories from "../api/controller/getDirectories";
+import getDirectoryTree from "../api/controller/getDirectoryTree";
 
 export async function createServer(): Promise<Express> {
   const server = express();
@@ -17,7 +15,7 @@ export async function createServer(): Promise<Express> {
   server.use(cors());
   server.use(express.json());
 
-  server.use("/", getDirectories);
+  server.use("/", getDirectoryTree);
 
   server.use(middlewares.notFound);
   server.use(middlewares.errorHandler);

@@ -1,30 +1,36 @@
 import fs from "node:fs";
+import { ParsedQs } from "qs";
 import { SUPPORTED_CONTENT } from "../../types/enums/SupportedContent";
-import DirEntry from "../../types/interfaces/DirEntry";
+import DirectoryEntry from "../../types/interfaces/DirectoryEntry";
 import getFileType from "../logic/getFileType";
 
-export const readFileSystem = (path: any) => {
-  const fileTree: DirEntry[] = [];
+export const readFileSystem = (
+  path: string | ParsedQs | string[] | ParsedQs[] | undefined
+): DirectoryEntry[] => {
+  const directoryTree: DirectoryEntry[] = [];
+  const stringPath = !Array.isArray(path)
+    ? (path as string)
+    : (path[0] as string);
   try {
-    fs.readdirSync(path as string, {
+    fs.readdirSync(stringPath, {
       withFileTypes: true,
       recursive: false,
-    }).forEach((fileName) => {
-      fileTree.push({
-        name: fileName.name,
-        type: getFileType(fileName, `${path as string}${fileName.name}`),
+    }).forEach((entry) => {
+      directoryTree.push({
+        name: entry.name,
+        type: getFileType(entry, `${stringPath}${entry.name}`),
       });
     });
   } catch (err: any) {
     if (err && err.code && err.code === "EPERM") {
-      fileTree.push({
+      directoryTree.push({
         name: "",
         type: SUPPORTED_CONTENT.RESTRICTED,
         error: err,
         message: "Operation not permitted!",
       });
     } else if (err && err.code && err.code === "ENOENT") {
-      fileTree.push({
+      directoryTree.push({
         name: "",
         type: SUPPORTED_CONTENT.UNSUPPORTED,
         error: err,
@@ -33,5 +39,5 @@ export const readFileSystem = (path: any) => {
     }
     console.error(err);
   }
-  return fileTree;
+  return directoryTree;
 };
