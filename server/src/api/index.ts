@@ -1,10 +1,11 @@
 import express from "express";
 
-import { DirResponse } from "../interfaces/DirResponse";
 import fs, { Dirent } from "node:fs";
 import { ParsedQs } from "qs";
-import ErrorResponse from "../interfaces/ErrorResponse";
-import { DirEntry, SUPPORTED_CONTENT } from "../interfaces/Models";
+import { SUPPORTED_CONTENT } from "../types/enums/SupportedContent";
+import ErrorResponse from "../types/interfaces/ErrorResponse";
+import DirResponse from "../types/interfaces/DirResponse";
+import DirEntry from "../types/interfaces/DirEntry";
 
 const router = express.Router();
 

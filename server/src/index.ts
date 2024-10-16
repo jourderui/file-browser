@@ -1,8 +1,11 @@
-import app from "./app";
-
+import { createServer } from "./utils/server";
 const port = process.env.PORT || 3101;
-app.listen(port, () => {
-  /* eslint-disable no-console */
-  console.log(`Listening: http://localhost:${port}`);
-  /* eslint-enable no-console */
-});
+createServer()
+  .then((server) => {
+    server.listen(port, () => {
+      console.info(`Listening: http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error(`Error: ${err}`);
+  });
