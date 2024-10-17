@@ -1,6 +1,6 @@
 import { SUPPORTED_CONTENT } from "../enums/SupportedContent";
 
-export default interface DirEntry {
+export default interface DirectoryEntry {
   name: string;
   type: SUPPORTED_CONTENT;
   error?: unknown;

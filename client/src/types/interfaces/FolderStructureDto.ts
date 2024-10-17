@@ -1,3 +1,5 @@
-export interface FolderStructureDto {
-  path: string;
+import DirectoryEntry from "./DirectoryEntry";
+
+export default interface FolderStructureDto {
+  data: DirectoryEntry[];
 }

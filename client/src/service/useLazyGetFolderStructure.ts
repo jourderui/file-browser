@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { FolderStructureDto } from "../types/interfaces/FolderStructureDto";
-import { getFolderStructure } from "./FolderStructure";
 
-export const useLazyFolderStructure = () => {
+import FolderStructureDto from "../types/interfaces/FolderStructureDto";
+import { getFolderStructure } from "./folderStructure";
+
+export const useLazyGetFolderStructure = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<FolderStructureDto | null>(null);
 
